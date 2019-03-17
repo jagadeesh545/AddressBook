@@ -10,6 +10,6 @@ Contact List
 <a href="{% url 'add_contact' %}">Add new contact</a>
 <h3>Click on the Contact Name to view more details.</h3>
 {% for contact in object_list %}
-  <p>{{ contact }}</p>
+  <p><a href="{% url 'view_contact' pk=contact.pk %}">{{ contact }}</a></p>
 {% endfor %}
 {% endblock %}

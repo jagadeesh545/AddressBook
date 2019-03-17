@@ -41,3 +41,21 @@ class AddContact(generic.CreateView):
 
     def dispatch(self, *args, **kwargs):
         return super(generic.CreateView, self).dispatch(*args, **kwargs)
+
+
+@method_decorator(login_required, name='dispatch')
+class ViewContact(generic.DetailView):
+    model = Contact
+    template_name = 'contact/view_contact.html'
+
+    def dispatch(self, *args, **kwargs):
+        return super(generic.DetailView, self).dispatch(*args, **kwargs)
+
+
+@method_decorator(login_required, name='dispatch')
+class DeleteContact(generic.DeleteView):
+    model = Contact
+    success_url = reverse_lazy('contact_list')
+
+    def dispatch(self, *args, **kwargs):
+        return super(generic.DeleteView, self).dispatch(*args, **kwargs)
