@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact List
+{% endblock %}
+
+{% block content %}
+<h2>Contact List</h2>
+<a href="{% url 'home' %}">Back to Home</a>
+<h3>Click on the Contact Name to view more details.</h3>
+{% for contact in object_list %}
+  <p>{{ contact }}</p>
+{% endfor %}
+{% endblock %}
