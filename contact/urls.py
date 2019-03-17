@@ -1,4 +1,4 @@
-"""AddressBook URL Configuration
+"""contact URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -14,13 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
-from django.views.generic import TemplateView
+from contact import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^accounts/', include('accounts.urls')),
-    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
-    url(r'^contact/', include('contact.urls')),
+    url(r'^contact_list/$', views.ContactList.as_view(), name='contact_list'),
+    url(r'^add_contact/$', views.AddContact.as_view(), name='add_contact'),
+    url(r'^view_contact/(?P<pk>[a-zA-z0-9\-]+)$', views.ViewContact.as_view(), name='view_contact'),
+    url(r'^delete_contact/(?P<pk>[a-zA-z0-9\-]+)$', views.DeleteContact.as_view(), name='delete_contact'),
 ]

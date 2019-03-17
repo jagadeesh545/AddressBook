@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Details
+{% endblock %}
+
+{% block content %}
+<h2>{{ object }} Details</h2>
+<b>First Name: </b><p>{{ object.first_name }}</p>
+<b>Last Name: </b><p>{{ object.last_name }}</p>
+<b>Phone: </b><p>{{ object.phone_number }}</p>
+<b>email: </b><p>{{ object.email_address }}</p>
+<b>Street Address: </b><p>{{ object.street_address }}</p>
+<a href="{% url 'delete_contact' pk=object.pk %}">Delete Contact</a>
+<a href="{% url 'contact_list' %}">Back to Contact List</a>
+{% endblock %}

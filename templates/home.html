@@ -8,6 +8,7 @@ Home
 {% if user.is_authenticated %}
   <p>Welcome {{ user.username }}!</p>
   <a href="{% url 'logout' %}">Logout</a>
+  <a href="{% url 'contact_list' %}">Contacts</a>
 {% else %}
   <p>Please Login or Sign Up</p>
   <a href="{% url 'login' %}">Login</a>
