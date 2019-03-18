@@ -18,6 +18,7 @@ from contact import views
 
 urlpatterns = [
     url(r'^contact_list/$', views.ContactList.as_view(), name='contact_list'),
+    url(r'^contact_list/(?P<letter>[A-Z])$', views.ContactList.as_view(), name='contact_list_letter'),
     url(r'^add_contact/$', views.AddContact.as_view(), name='add_contact'),
     url(r'^view_contact/(?P<pk>[a-zA-z0-9\-]+)$', views.ViewContact.as_view(), name='view_contact'),
     url(r'^delete_contact/(?P<pk>[a-zA-z0-9\-]+)$', views.DeleteContact.as_view(), name='delete_contact'),
