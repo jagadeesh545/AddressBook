@@ -6,17 +6,50 @@ from django.views import generic
 from contact.models import Contact
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, resolve
+from django.conf.urls import url
+from contact.forms import ContactSearchForm
+from django.db.models import Q
 
-# Create your views here.
 @method_decorator(login_required, name='dispatch')
-class ContactList(generic.ListView):
+class ContactList(generic.ListView, generic.edit.FormView):
     model = Contact
+    form_class = ContactSearchForm
     paginate_by = 20
     template_name = 'contact/contact_list.html'
 
+    def form_valid(self, form):
+        return super(generic.edit.FormView, self).form_valid(form)
+
     def get_queryset(self):
-        return Contact.objects.filter(user=self.request.user)
+        try:
+            letter_val = self.kwargs['letter']
+        except:
+            letter_val = ''
+        print('letter value = '+letter_val)
+        filter_val = self.request.GET.get('search_name', '')
+        if not letter_val:
+            result = Contact.objects.filter(user=self.request.user).filter(
+                Q(first_name__icontains=filter_val)
+                |Q(last_name__icontains=filter_val)
+            ).order_by('first_name')
+        elif not filter_val:
+            result = Contact.objects.filter(user=self.request.user).filter(
+                Q(first_name__startswith=letter_val)
+                |Q(first_name__startswith=letter_val.lower())
+                |Q(last_name__startswith=letter_val)
+                |Q(last_name__startswith=letter_val.lower())
+            ).order_by('first_name')
+        else:
+            result = Contact.objects.filter(
+                user=self.request.user
+            ).order_by('first_name')
+        return result
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactList, self).get_context_data(**kwargs)
+        context['search_name'] = self.request.GET.get('search_name', '')
+        return context
 
     def dispatch(self, *args, **kwargs):
         return super(generic.ListView, self).dispatch(*args, **kwargs)
