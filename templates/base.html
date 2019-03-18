@@ -1,5 +1,6 @@
-<!-- templates/base.html -->
+<!-- Base html file which is extended by all other html templates in the project. -->
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
   <meta charset="utf-8">
@@ -7,8 +8,9 @@
     {% block title %}
     {% endblock %}
   </title>
+  <link rel="stylesheet" href="{% static 'css/address_book.css' %}">
 </head>
-<body>
+<body class="background">
   <main>
     <h1>Address Book</h1>
     {% block content %}

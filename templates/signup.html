@@ -6,8 +6,10 @@
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
+    <table class="center">
+      {{ form.as_table }}
+    </table>
+    <p><button type="submit">Sign up</button></p>
   </form>
-  <a href="{% url 'home' %}">Cancel</a>
+  <p><a href="{% url 'home' %}">Cancel</a></p>
 {% endblock %}

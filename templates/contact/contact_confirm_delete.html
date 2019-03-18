@@ -8,6 +8,6 @@ Confirm Delete Contact
 <form method="post">
   {% csrf_token %}
   <p>Are you sure you want to delete "{{ object }}"?</p>
-  <input type="submit" value="Delete Contact">
+  <p><input type="submit" value="Delete Contact"></p>
 </form>
 {% endblock %}
