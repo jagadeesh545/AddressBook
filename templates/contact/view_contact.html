@@ -6,11 +6,28 @@ Contact Details
 
 {% block content %}
 <h2>{{ object }} Details</h2>
-<b>First Name: </b><p>{{ object.first_name }}</p>
-<b>Last Name: </b><p>{{ object.last_name }}</p>
-<b>Phone: </b><p>{{ object.phone_number }}</p>
-<b>email: </b><p>{{ object.email_address }}</p>
-<b>Street Address: </b><p>{{ object.street_address }}</p>
-<a href="{% url 'delete_contact' pk=object.pk %}">Delete Contact</a>
-<a href="{% url 'contact_list' %}">Back to Contact List</a>
+<table class="center">
+  <tr>
+    <td><b>First Name: </b></td>
+    <td>{{ object.first_name }}</td>
+  </tr>
+  <tr>
+    <td><b>Last Name: </b></td>
+    <td>{{ object.last_name }}</td>
+  </tr>
+  <tr>
+    <td><b>Phone: </b></td>
+    <td>{{ object.phone_number }}</td>
+  </tr>
+  <tr>
+    <td><b>Email: </b></td>
+    <td>{{ object.email_address }}</td>
+  </tr>
+  <tr>
+    <td><b>Street Address: </b></td>
+    <td>{{ object.street_address }}</td>
+  </tr>
+</table>
+<p><a href="{% url 'delete_contact' pk=object.pk %}">Delete Contact</a></p>
+<p><a href="{% url 'contact_list' %}">Back to Contact List</a></p>
 {% endblock %}

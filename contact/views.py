@@ -26,7 +26,6 @@ class ContactList(generic.ListView, generic.edit.FormView):
             letter_val = self.kwargs['letter']
         except:
             letter_val = ''
-        print('letter value = '+letter_val)
         filter_val = self.request.GET.get('search_name', '')
         if not letter_val:
             result = Contact.objects.filter(user=self.request.user).filter(

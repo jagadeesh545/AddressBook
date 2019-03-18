@@ -7,11 +7,11 @@ Home
 {% block content %}
 {% if user.is_authenticated %}
   <p>Welcome {{ user.username }}!</p>
-  <a href="{% url 'logout' %}">Logout</a>
-  <a href="{% url 'contact_list' %}">Contacts</a>
+  <p><a href="{% url 'logout' %}">Logout</a></p>
+  <p><a href="{% url 'contact_list' %}">Contacts</a></p>
 {% else %}
   <p>Please Login or Sign Up</p>
-  <a href="{% url 'login' %}">Login</a>
-  <a href="{% url 'signup' %}">Sign Up</a>
+  <p><a href="{% url 'login' %}">Login</a></p>
+  <p><a href="{% url 'signup' %}">Sign Up</a></p>
 {% endif %}
 {% endblock %}

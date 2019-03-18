@@ -7,6 +7,7 @@ import uuid
 
 # Create your models here.
 class Contact(models.Model):
+    """Model to store contact details in the database. Main model for AddressBook project"""
     cid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)

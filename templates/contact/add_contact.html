@@ -9,6 +9,6 @@ Add Contact
 <form method="POST">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit" name="submit_new_contact">Submit</button>
+  <p><button type="submit" name="submit_new_contact">Submit</button></p>
 </form>
 {% endblock %}
